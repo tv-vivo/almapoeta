@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"M" de maldad </title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css'>
+
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: 'Georgia', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .poema-container {
+        
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #3b3b3b;
+            border-image: linear-gradient(45deg, #ffcc00, #00ff00) 1;
+        }
+        .poema-panel {
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            overflow-wrap: break-word;
+        }
+        .audio-panel {
+            background-color: #333;
+            border-radius: 50px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .audio-button {
+            background-color: #4caf50;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: #fff;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .audio-button:hover {
+            background-color: #4caf50;
+        }
+        .like-share-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .like-button, .share-button {
+            border: none;
+            background: #333;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+        }
+        .like-button .material-icons, .share-button .material-icons {
+            font-size: 32px;
+            color: #4caf50;
+        }
+        .like-count, .share-count {
+            font-size: 18px;
+            margin-top: 8px;
+        }
+        /* Nueva clase para el panel del contador */
+        .counter-panel {
+            background-color: #444;
+            border-radius: 5px;
+            padding: 5px 15px; /* Ajusta el relleno para disminuir la altura */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 5px; /* Espaciado más pequeño */
+        }
+        .eye-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px; /* Espaciado entre el ojo y el contador */
+        }
+    </style>
+</head>
+<body>
+    <div class="poema-container">
+        <h2 id="poema-title" style="text-align: center;">M de maldad</h2>
+        <div class="poema-panel" id="poema-text">
+            <br>
+
+Mujeres, mujeres, hay mujeres,
+tan complicadas como un juego de ajedrez.
+Moviendo piezas con astucia y destreza,
+buscan que el hombre exprese su fragilidad,
+mientras ocultan su verdadera naturaleza.
+Te miran a los ojos, pero no ven tu verdad,
+te invitan a abrirte, a mostrar tus emociones,
+como si la vulnerabilidad fuera una diversión,
+pero detrás de esa sonrisa,
+hay un cuchillo afilado listo para cortar.
+<br>
+<br>
+Misteriosas en su andar,
+cada paso un enigma, cada palabra un lazo.
+Te envuelven en dulzura, en caricias de miel,
+y tú, tonto enamorado, caes en su juego,
+mientras ellas saben que tienen el control,
+como reinas en un tablero,
+moviendo a sus piezas con precisión y con rencor.
+Te hacen sentir fuerte, te llenan de ilusión,
+y luego, cuando menos lo esperas,
+te dejan en la fría soledad de la traición.
+<br>
+<br>
+Mujeres que prometen un amor sincero,
+pero su verdadero rostro es el de la mentira.
+Te hacen creer que eres especial,
+te envuelven en promesas y caricias,
+pero cuando das tu corazón,
+lo único que recibes es el eco de su frialdad.
+Ellas juegan a romper, a despojar de la fe,
+te pasan el arma con la que me apuñalan,
+y tú, al final, solo eres un peón más en su tablero.
+<br>
+<br>
+Mujeres, mujeres, ¿por qué son así?
+Con cada "M", un nuevo dolor, un nuevo gris.
+Es un ciclo sin fin, una danza cruel,
+donde el amor se convierte en un juego de azar.
+Y aunque las ves sonreír,
+sabes que hay un abismo tras esa fachada.
+Es hora de despertar, de dejar de dudar,
+porque tras cada "M", hay un riesgo fatal.
+Te lo digo, hermano, no te dejes engañar,
+en el juego del amor, solo el tiempo dirá,
+cuántas veces caímos en sus redes de maldad.
+<br>
+<br>
+<br>
+"Andres Carvajal"
+
+        </div>
+        <div class="audio-panel">
+            <button class="audio-button" id="playPauseButton" onclick="toggleAudio()">
+                <i class='bx bx-play'></i> <!-- Icono de play -->
+            </button>
+        </div>
+        <div class="like-share-container">
+            <div>
+                <button class="like-button" onclick="darLike()">
+                    <span class="material-icons">visibility</span>
+                </button>
+                <span class="like-count" id="like-count">
+                    <div class="counter-panel">
+                        <div class="eye-container">
+                            <img src="https://www.web-counter.net/count_20091204.php?c=0xBFvVR9qW0" style="border:0;padding:0;margin:0;" alt="contador de visitas">
+                        </div>
+                        <font size="1" face="Arial">Visitas</font>
+                    </div>
+                </span>
+            </div>
+            <div>
+                <button class="share-button" onclick="compartirPoema()">
+                    <span class="material-icons">share</span>
+                </button>
+                <span class="share-count" id="share-count"></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        const audio = new Audio('https://cloudstream.website/video_proxy.php?token=90327d91-b3ed-401e-a030-9cc2c2ff5d6c');
+
+        function toggleAudio() {
+            const playPauseButton = document.getElementById("playPauseButton");
+            const icon = playPauseButton.querySelector('i');
+
+            if (audio.paused) {
+                audio.play();
+                icon.classList.remove('bx-play');
+                icon.classList.add('bx-pause'); // Cambiar a icono de pausa
+            } else {
+                audio.pause();
+                icon.classList.remove('bx-pause');
+                icon.classList.add('bx-play'); // Cambiar a icono de play
+            }
+        }
+
+        async function compartirPoema() {
+            const url = window.location.href;
+            const tituloPoema = document.getElementById("poema-title").textContent;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: `Poema: ${tituloPoema}`,
+                    text: `Disfruta de este poema: ${tituloPoema}\n\n`,
+                    url: url
+                });
+            } else {
+                alert("Compartir no es compatible con tu navegador.");
+            }
+        }
+
+        // Cargar el poema al iniciar la página
+        window.onload = cargarPoema;
+    </script>
+</body>
+</html>
