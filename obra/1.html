@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>"M" de maldad </title>
+    <title>"M" de Maldad</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css'>
-
     <style>
-        body {
+        
+            body {
             background-color: #121212;
             color: #fff;
             font-family: 'Georgia', serif;
@@ -109,9 +109,9 @@
 </head>
 <body>
     <div class="poema-container">
-        <h2 id="poema-title" style="text-align: center;">M de maldad</h2>
+        <h2 id="poema-title">"M" de Maldad</h2>
         <div class="poema-panel" id="poema-text">
-            <br>
+                       <br>
 
 Mujeres, mujeres, hay mujeres,
 tan complicadas como un juego de ajedrez.
@@ -158,29 +158,25 @@ Es hora de despertar, de dejar de dudar,
 porque tras cada "M", hay un riesgo fatal.
 Te lo digo, hermano, no te dejes engañar,
 en el juego del amor, solo el tiempo dirá,
+y el tiempo es un factor que le da valor a la vida,
+asi que valora el tiempo de vida que te regale,
 cuántas veces caímos en sus redes de maldad.
 <br>
 <br>
 <br>
 "Andres Carvajal"
 
-        </div>
-        <div class="audio-panel">
-            <button class="audio-button" id="playPauseButton" onclick="toggleAudio()">
-                <i class='bx bx-play'></i> <!-- Icono de play -->
-            </button>
+        
         </div>
         <div class="like-share-container">
             <div>
                 <button class="like-button" onclick="darLike()">
-                    <span class="material-icons">visibility</span>
+                    <span class="material-icons">thumb_up</span>
                 </button>
                 <span class="like-count" id="like-count">
                     <div class="counter-panel">
-                        <div class="eye-container">
-                            <img src="https://www.web-counter.net/count_20091204.php?c=0xBFvVR9qW0" style="border:0;padding:0;margin:0;" alt="contador de visitas">
-                        </div>
-                        <font size="1" face="Arial">Visitas</font>
+                        <font size="1" face="Arial"></font>
+                        <span id="like-count-value">0</span>
                     </div>
                 </span>
             </div>
@@ -188,45 +184,63 @@ cuántas veces caímos en sus redes de maldad.
                 <button class="share-button" onclick="compartirPoema()">
                     <span class="material-icons">share</span>
                 </button>
-                <span class="share-count" id="share-count"></span>
             </div>
         </div>
     </div>
     <script>
-        const audio = new Audio('https://cloudstream.website/video_proxy.php?token=90327d91-b3ed-401e-a030-9cc2c2ff5d6c');
+        
 
-        function toggleAudio() {
-            const playPauseButton = document.getElementById("playPauseButton");
-            const icon = playPauseButton.querySelector('i');
 
-            if (audio.paused) {
-                audio.play();
-                icon.classList.remove('bx-play');
-                icon.classList.add('bx-pause'); // Cambiar a icono de pausa
-            } else {
-                audio.pause();
-                icon.classList.remove('bx-pause');
-                icon.classList.add('bx-play'); // Cambiar a icono de play
-            }
+const key = "andresvpn_pro"; 
+const id = "1"; 
+
+
+async function obtenerLikes() {
+    try {
+        const response = await fetch(`https://corsproxy.io/?http://flixstream.site/like.php?key=${key}&id=${id}`);
+        const data = await response.json();
+        if (data.success) {
+            document.getElementById("like-count-value").textContent = data.total_likes;
+        } else {
+            console.error("Error al obtener el número de likes:", data.message);
         }
-
-        async function compartirPoema() {
-            const url = window.location.href;
-            const tituloPoema = document.getElementById("poema-title").textContent;
-
-            if (navigator.share) {
-                navigator.share({
-                    title: `Poema: ${tituloPoema}`,
-                    text: `Disfruta de este poema: ${tituloPoema}\n\n`,
-                    url: url
-                });
-            } else {
-                alert("Compartir no es compatible con tu navegador.");
-            }
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+    }
+}
+async function darLike() {
+    try {
+        const response = await fetch(`https://corsproxy.io/?http://flixstream.site/like.php?key=${key}&post=true&id=${id}`);
+        const data = await response.json();
+        if (data.success) {
+            document.getElementById("like-count-value").textContent = data.total_likes;
+        } else {
+            alert("Hubo un error al registrar tu like. Inténtalo nuevamente.");
         }
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+    }
+}
 
-        // Cargar el poema al iniciar la página
-        window.onload = cargarPoema;
+async function compartirPoema() {
+    const url = window.location.href;
+    const tituloPoema = document.getElementById("poema-title").textContent;
+
+    if (navigator.share) {
+        navigator.share({
+            title: `Poema: ${tituloPoema}`,
+            text: `Disfruta de este poema: ${tituloPoema}\n\n`,
+            url: url
+        });
+    } else {
+        alert("Compartir no es compatible con tu navegador.");
+    }
+}
+
+
+window.onload = function() {
+    obtenerLikes(); 
+};
     </script>
 </body>
 </html>
